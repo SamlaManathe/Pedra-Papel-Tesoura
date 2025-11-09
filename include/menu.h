@@ -1,3 +1,3 @@
 //DECLARAÇÃO DO MENU
 
-//Declarar função menu
+//Declarar função menuPrincipal
