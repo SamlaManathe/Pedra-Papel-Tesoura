@@ -1,3 +1,10 @@
 //DECLARAÇÃO DO MENU
 
-//Declarar função menuPrincipal
+//Declarar função menu
+
+#ifndef MENU_H
+#define MENU_H
+
+void menuPrincipal();
+
+#endif
