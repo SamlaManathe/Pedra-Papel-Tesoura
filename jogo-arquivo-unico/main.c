@@ -361,7 +361,7 @@ void menuPrincipal() {
 }
 
 int main() {
-    getchar();
+    SetConsoleOutputCP(CP_UTF8);
     menuPrincipal();
     return 0;
 }
