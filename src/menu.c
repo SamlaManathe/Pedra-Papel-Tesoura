@@ -3,10 +3,10 @@
 //Fazer função menuPrincipal
 
 #include <stdio.h>
-#include "../include/jogo.h"
-#include "../include/ranking.h"
+#include "../src/jogo.c"
+#include "../src/ranking.c"
 
-#include <stdio.h>
+
 
 void menuPrincipal(){
     int opcao;
