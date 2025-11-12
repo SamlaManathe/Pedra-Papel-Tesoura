@@ -79,7 +79,7 @@ void jogoMultiplayer() {
             printf("\nJogador 1\n");
             printf("\nEscolha sua jogada: \n");
             printf("\n1 - PEDRA\n2 - PAPEL\n3 - TESOURA\n");
-            printf("\nOpcao (1,2,3): ");
+            printf("\nOpção (1,2,3): ");
             scanf("%d", &opcaoJogador1);
             escolhaFeitaJogador(opcaoJogador1, escolhaJogador1);
         } while(opcaoJogador1 != 1 && opcaoJogador1 != 2 && opcaoJogador1 != 3);
@@ -88,7 +88,7 @@ void jogoMultiplayer() {
             printf("\nJogador 2\n");
             printf("\nEscolha sua jogada: \n");
             printf("\n1 - PEDRA\n2 - PAPEL\n3 - TESOURA\n");
-            printf("\nOpcao (1,2,3): ");
+            printf("\nOpção (1,2,3): ");
             scanf("%d", &opcaoJogador2);
             escolhaFeitaJogador(opcaoJogador2, escolhaJogador2);
         } while(opcaoJogador2 != 1 && opcaoJogador2 != 2 && opcaoJogador2 != 3);
@@ -137,7 +137,7 @@ void jogoMultiplayer() {
         getchar();
         system("cls");
         if(i < (quantPartidas-1)){
-            printf("\nIniciando a proxima rodada...");
+            printf("\nIniciando a próxima rodada...");
             Sleep(1000);
             system("cls");
         }
@@ -167,7 +167,7 @@ void jogoOffline() {
     printf("\nIniciando a partida...\n");
     Sleep(1000);
     system("cls");
-    printf("\nPARTIDA (MELHOR DE TRES)\n");
+    printf("\nPARTIDA (MELHOR DE TRÊS)\n");
     for(int i = 0; i < quantPartidas; i++){
        iniciarRodada(i+1);  // <-- AQUI: Integra o cronômetro
 
@@ -227,7 +227,7 @@ void jogoOffline() {
         getchar();
         system("cls");
         if(i < (quantPartidas-1)){
-            printf("\nIniciando a proxima rodada...");
+            printf("\nIniciando a próxima rodada...");
             Sleep(1000);
             system("cls");
         }
@@ -264,7 +264,7 @@ void iniciarJogo() {
                 break;
             default:
                 system("cls");
-                printf("\nOpcao inválida.\n");
+                printf("\nOpção inválida.\n");
                 break;
         }
     } while(opcao != 3);
@@ -275,7 +275,7 @@ void menuPrincipal() {
     do {
         printf("\n====== MENU ======\n\n");
         printf("1 - Iniciar Jogo\n2 - Ver Ranking\n3 - Creditos\n0 - Sair\n");
-        printf("\nOpcao: ");
+        printf("\nOpção: ");
         scanf("%d", &opcao);
         switch(opcao) {
             case 1:
