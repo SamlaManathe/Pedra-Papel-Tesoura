@@ -314,7 +314,7 @@ void menuPrincipal() {
 
     do {
         printf("\n====== MENU ======\n\n");
-        printf("1 - Iniciar Jogo\n2 - Ver Ranking\n3 - Créditos\n0 - Sair\n");
+        printf("1 - Iniciar Jogo\n2 - Ver Ranking\n3 - Créditos\n4 - Tutorial\n0 - Sair\n");
 
         printf("\nOpção: ");
         scanf("%d", &opcao);
@@ -345,6 +345,16 @@ void menuPrincipal() {
                 getchar();
                 system("cls");
                 break;
+            case 4:
+                system("cls");
+                printf("\nCarregando o Tutorial");
+                Sleep(1000);
+                system("cls");
+                printf("teste\n");
+                getchar();
+                printf("\nPressione ENTER para voltar ao MENU...");
+                getchar();
+                break;
             case 0:
                 system("cls");
                 printf("\nSaindo...\n");
@@ -360,8 +370,28 @@ void menuPrincipal() {
     } while(opcao != 0);
 }
 
-int main() {
+void menuInicial() {
+    printf("\nPEDRA PAPEL E TESOURA\n");
+    Sleep(1000);
+    printf("\n\nPressione qualquer tecla para iniciar.\n");
     getchar();
+    system("cls");
+
+    printf("Carregando ");
+    for (int i = 0; i <= 2; i++) {
+        printf(".");
+        Sleep(1000);
+    }
+    system("cls");
+    printf("\n\nConcluído!\n");
+
+    Sleep(0600);
+    system("cls");
+}
+
+int main() {
+    SetConsoleOutputCP(CP_UTF8);
+    menuInicial();
     menuPrincipal();
     return 0;
 }
