@@ -3,6 +3,7 @@
 #include <string.h>
 #include <time.h>
 #include <windows.h>
+#include <Windows.h>
 
 void menuPrincipal();
 void iniciarJogo();
@@ -23,6 +24,12 @@ void escolhaFeitaJogador(int opcao, char escolhaJogador[]){
         case 3:
             strcpy(escolhaJogador, "TESOURA");
             break;
+        case 4:
+            system("cls");
+            printf("\nVoltando para o menu principal...\n");
+            Sleep(1000);
+            system("cls");
+            menuPrincipal();
         default:
             printf("\nOpção Inválida.\n");
             break;
@@ -67,28 +74,28 @@ void jogoMultiplayer() {
         do{
             printf("\nJogador 1\n");
             printf("\nEscolha sua jogada: \n");
-            printf("\n1 - PEDRA\n2 - PAPEL\n3 - TESOURA\n");
+            printf("\n1 - PEDRA\n2 - PAPEL\n3 - TESOURA\n4 - DESISTIR\n");
 
-            printf("\nOpção (1,2,3): ");
+            printf("\nOpção (1,2,3,4): ");
             scanf("%d", &opcaoJogador1);
 
             escolhaFeitaJogador(opcaoJogador1, escolhaJogador1);
 
-        } while(opcaoJogador1 != 1 && opcaoJogador1 != 2 && opcaoJogador1 != 3);
+        } while(opcaoJogador1 != 1 && opcaoJogador1 != 2 && opcaoJogador1 != 3 && opcaoJogador1 != 4);
 
         system("cls");
 
         do{
             printf("\nJogador 2\n");
             printf("\nEscolha sua jogada: \n");
-            printf("\n1 - PEDRA\n2 - PAPEL\n3 - TESOURA\n");
+            printf("\n1 - PEDRA\n2 - PAPEL\n3 - TESOURA\n4 - DESISTIR\n");
 
-            printf("\nOpção (1,2,3): ");
+            printf("\nOpção (1,2,3,4): ");
             scanf("%d", &opcaoJogador2);
 
             escolhaFeitaJogador(opcaoJogador2, escolhaJogador2);
 
-        } while(opcaoJogador2 != 1 && opcaoJogador2 != 2 && opcaoJogador2 != 3);
+        } while(opcaoJogador2 != 1 && opcaoJogador2 != 2 && opcaoJogador2 != 3 && opcaoJogador2!= 4);
 
         system("cls");
         printf("\nCarregando o resultado da rodada...\n");
@@ -184,21 +191,22 @@ void jogoOffline() {
 
     printf("\nPARTIDA (MELHOR DE TRÊS)\n");
 
+
     for(int i = 0; i < quantPartidas; i++){
         printf("\nRODADA %d\n", i+1);
 
         do{
             printf("\nEscolha sua jogada: \n");
-            printf("\n1 - PEDRA\n2 - PAPEL\n3 - TESOURA\n");
+            printf("\n1 - PEDRA\n2 - PAPEL\n3 - TESOURA\n4 - DESISTIR\n");
 
-            printf("\nOpção (1,2,3): ");
+            printf("\nOpção (1,2,3,4): ");
             scanf("%d", &opcao);
 
             system("cls");
 
             escolhaFeitaJogador(opcao, escolhaJogador);
 
-        } while(opcao != 1 && opcao != 2 && opcao != 3);
+        } while(opcao != 1 && opcao != 2 && opcao != 3 && opcao != 4);
 
         srand(time(NULL));
 
