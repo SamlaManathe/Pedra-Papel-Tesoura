@@ -5,12 +5,33 @@
 #include <windows.h>
 #include <Windows.h>
 
-void menuPrincipal();
-void iniciarJogo();
+void escolhaFeitaJogador(int opcao, char escolhaJogador[]);
 void jogoMultiplayer();
 void jogoOffline();
 void mostrarRanking();
-void escolhaFeitaJogador(int opcao, char escolhaJogador[]);
+void iniciarJogo();
+void mostrarTutorial();
+void menuPrincipal();
+void menuInicial();
+void telaCarregamento();
+
+void telaCarregamento(){
+	system("cls");
+	for (int i = 0; i <= 1; i++) {
+	    printf("\nCarregando ");
+			for (int i = 0; i <= 3; i++) {
+		        printf(". ");
+		        Sleep(0400);
+		    }
+		    system("cls");
+	}
+	    system("cls");
+	    printf("\nConcluído!\n");
+	    Sleep(0500);
+	    system("cls");
+	    
+	    fflush(stdin);
+}
 
 void escolhaFeitaJogador(int opcao, char escolhaJogador[]){
 
@@ -317,6 +338,152 @@ void iniciarJogo() {
     } while(opcao != 3);
 }
 
+void mostrarTutorial() {
+	char voltarAoMenu;
+    char opcao;
+
+    // Primeiro Bloco
+    system("cls");
+    printf("\n================== TUTORIAL ==================\n\n");
+    printf("Bem-vindo ao clássico jogo de PEDRA, PAPEL e TESOURA!\n\n\n");
+    printf("- Pressione ENTER para continuar ou 'M' para voltar ao menu.\n");
+
+    opcao = getchar();
+
+    if (opcao == 'm' || opcao == 'M') {
+    	system("cls");
+        return;
+    }
+
+    system("cls");
+
+    // Segundo Bloco
+    // Início do Bloco Anterior
+    printf("\n================== TUTORIAL ==================\n\n");
+    printf("Bem-vindo ao clássico jogo de PEDRA, PAPEL e TESOURA!\n\n");
+    // Fim do Bloco Anterior
+
+    printf("O objetivo é simples: vença o seu oponente escolhendo a jogada certa\n"
+           "para derrotar a escolha dele. ");
+    printf("Cada rodada tem três opções:\n\n");
+    printf("1 - PEDRA\n2 - PAPEL\n3 - TESOURA\n\n");
+    printf("- Pressione ENTER para continuar ou 'M' para voltar ao menu.\n");
+    
+	opcao = getchar();
+
+    if (opcao == 'm' || opcao == 'M') {
+    	system("cls");
+        return;
+    }
+
+    system("cls");
+	
+	//Terceiro Bloco
+	// Início do Bloco Anterior
+    printf("\n================== TUTORIAL ==================\n\n");
+    printf("Bem-vindo ao clássico jogo de PEDRA, PAPEL e TESOURA!\n\n");
+    printf("O objetivo é simples: vença o seu oponente escolhendo a jogada certa\n"
+           "para derrotar a escolha dele. ");
+    printf("Cada rodada tem três opções:\n\n");
+    printf("1 - PEDRA\n2 - PAPEL\n3 - TESOURA\n\n");
+    printf("----------------------------------------------\n\n");
+    // Fim do Bloco Anterior
+	printf("Regras básicas:\n\n"
+           "- PEDRA quebra TESOURA.\n"
+           "- TESOURA corta PAPEL.\n"
+           "- PAPEL embrulha PEDRA.\n\n");
+    printf("- Pressione ENTER para continuar ou 'M' para voltar ao menu.\n");
+
+    opcao = getchar();
+
+    if (opcao == 'm' || opcao == 'M') {
+    	system("cls");
+        return;
+    }
+
+    system("cls");
+
+    // Quarto Bloco
+    // Início do Bloco Anterior
+    printf("\n================== TUTORIAL ==================\n\n");
+    printf("Bem-vindo ao clássico jogo de PEDRA, PAPEL e TESOURA!\n\n");
+    printf("O objetivo é simples: vença o seu oponente escolhendo a jogada certa\n"
+           "para derrotar a escolha dele. ");
+    printf("Cada rodada tem três opções:\n\n");
+    printf("1 - PEDRA\n2 - PAPEL\n3 - TESOURA\n\n");
+    printf("----------------------------------------------\n\n");
+    printf("Regras básicas:\n\n"
+           "- PEDRA quebra TESOURA.\n"
+           "- TESOURA corta PAPEL.\n"
+           "- PAPEL embrulha PEDRA.\n\n");
+    printf("----------------------------------------------\n\n\n");
+    // Fim do Bloco Anterior
+
+    printf("MODOS DE JOGO:\n\n");
+    printf("• OFFLINE: jogue contra o computador.\n\n");
+    printf("• MULTIPLAYER: jogue contra outro jogador.\n\n");
+    printf("\n- Pressione ENTER para continuar ou 'M' para voltar ao menu.\n");
+
+    opcao = getchar();
+
+    if (opcao == 'm' || opcao == 'M') {
+    	system("cls");
+        return;
+    }
+
+    system("cls");
+	
+	quintoBloco:
+    // Quinto e Último Bloco
+    fflush(stdin);
+    // Início do Bloco Anterior
+    printf("\n==================== TUTORIAL ====================\n\n");
+    printf("Bem-vindo ao clássico jogo de PEDRA, PAPEL e TESOURA!\n\n");
+    printf("O objetivo é simples: vença o seu oponente escolhendo a jogada certa\n"
+           "para derrotar a escolha dele. ");
+    printf("Cada rodada tem três opções:\n\n");
+    printf("1 - PEDRA\n2 - PAPEL\n3 - TESOURA\n\n");
+    printf("----------------------------------------------\n\n");
+    printf("Regras básicas:\n\n"
+           "- PEDRA quebra TESOURA.\n"
+           "- TESOURA corta PAPEL.\n"
+           "- PAPEL embrulha PEDRA.\n\n");
+    printf("----------------------------------------------\n\n\n");
+    printf("MODOS DE JOGO:\n\n");
+    printf("- OFFLINE: jogue contra o computador.\n");
+    printf("- MULTIPLAYER: jogue contra outro jogador.\n\n");
+    printf("----------------------------------------------\n\n");
+    // Fim do Bloco Anterior
+
+    printf("PARTIDAS:\n\n");
+    printf("As partidas são no modo MELHOR DE CINCO ou MELHOR DE TRÊS.\n");
+    printf("Quem vencer duas rodadas é o campeão!\n\n");
+    printf("\n- Pressione 'ENTER' para voltar ao MENU.\n");
+
+    getchar();
+    
+    do {
+                printf("\n- Deseja realmente voltar ao MENU? (S/N): ");
+                fflush(stdin);
+                scanf(" %c", &voltarAoMenu);
+
+                if(voltarAoMenu == 'S' || voltarAoMenu == 's'){
+                	system("cls");
+                    break;
+                } else if(voltarAoMenu == 'N' || voltarAoMenu == 'n') {
+                	system("cls");
+                    goto quintoBloco;
+                } else {
+                	system("cls");
+                    printf("\nOpção inválida, digite novamente.\n");
+                    Sleep(1500);
+                    system("cls");
+                    goto quintoBloco;
+                }
+            } while(voltarAoMenu != 'S' && voltarAoMenu != 'N');
+}
+
+
 void menuPrincipal() {
     int opcao;
 
@@ -329,24 +496,15 @@ void menuPrincipal() {
 
         switch(opcao) {
             case 1:
-                system("cls");
-                printf("\nIniciando o jogo...\n");
-                Sleep(1000);
-                system("cls");
+                telaCarregamento();
                 iniciarJogo();
                 break;
             case 2:
-                system("cls");
-                printf("\nCarregando o ranking...\n");
-                Sleep(1000);
-                system("cls");
+                telaCarregamento();
                 mostrarRanking();
                 break;
             case 3:
-                system("cls");
-                printf("\nCarregando os créditos...\n");
-                Sleep(1000);
-                system("cls");
+                telaCarregamento();
                 printf("\nDaniel Tavares\nGuilherme Simão\nRafael Lucas\nSamla Manathe\nVicente Queiroz\n");
                 getchar();
                 printf("\nPressione ENTER para voltar ao MENU...");
@@ -354,14 +512,8 @@ void menuPrincipal() {
                 system("cls");
                 break;
             case 4:
-                system("cls");
-                printf("\nCarregando o Tutorial");
-                Sleep(1000);
-                system("cls");
-                printf("teste\n");
-                getchar();
-                printf("\nPressione ENTER para voltar ao MENU...");
-                getchar();
+                telaCarregamento();
+			    mostrarTutorial();
                 break;
             case 0:
                 system("cls");
@@ -379,22 +531,12 @@ void menuPrincipal() {
 }
 
 void menuInicial() {
-    printf("\nPEDRA PAPEL E TESOURA\n");
-    Sleep(1000);
-    printf("\n\nPressione qualquer tecla para iniciar.\n");
+    printf("\n=== PEDRA PAPEL E TESOURA ===\n");
+    Sleep(1100);
+    printf("\n\n- Pressione ENTER para iniciar.\n");
     getchar();
-    system("cls");
-
-    printf("Carregando ");
-    for (int i = 0; i <= 2; i++) {
-        printf(".");
-        Sleep(1000);
-    }
-    system("cls");
-    printf("\n\nConcluído!\n");
-
-    Sleep(0600);
-    system("cls");
+    
+    telaCarregamento();
 }
 
 int main() {
