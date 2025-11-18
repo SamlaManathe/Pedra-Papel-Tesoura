@@ -8,9 +8,9 @@
 //system("cls"); Apaga o conteúdo do terminal
 
 void menuPrincipal(); //Chama as funções iniciarJogo e mostrarRanking
-void iniciarJogo(); //Chama as funções jogoMultiplayer e jogoOffline
+void iniciarJogo(); //Chama as funções jogoMultiplayer e jogoSingleplayer
 void jogoMultiplayer();
-void jogoOffline();
+void jogoSingleplayer();
 void mostrarRanking();
 void escolhaFeitaJogador(int opcao, char escolhaJogador[]);
 void carregarRanking();
@@ -21,6 +21,7 @@ void iniciarRodada(int rodada);
 void telaCarregamento();
 void menuInicial();
 void mostrarTutorial();
+void delay();
 
 typedef struct{
     char nomeJogador[20];
@@ -117,8 +118,8 @@ void mostrarTutorial() {
     // Fim do Bloco Anterior
 
     printf("MODOS DE JOGO:\n\n");
-    printf("• OFFLINE: jogue contra o computador.\n\n");
-    printf("• MULTIPLAYER: jogue contra outro jogador.\n\n");
+    printf("- SINGLEPLAYER: jogue contra o computador.\n\n");
+    printf("- MULTIPLAYER: jogue contra outro jogador.\n\n");
     printf("\n- Pressione ENTER para continuar ou 'M' para voltar ao menu.\n");
 
     opcao = getchar();
@@ -180,34 +181,35 @@ void mostrarTutorial() {
             } while(voltarAoMenu != 'S' && voltarAoMenu != 'N');
 }
 
-void menuInicial() {
+void menuInicial() { //
     printf("\n=== PEDRA PAPEL E TESOURA ===\n");
-    Sleep(1100);
+    Sleep(0700);
     printf("\n\n- Pressione ENTER para iniciar.\n");
     getchar();
 
     telaCarregamento();
 }
 
-void telaCarregamento(){
+void delay(){
 	system("cls");
-	for (int i = 0; i <= 1; i++) {
-	    printf("\nCarregando ");
-			for (int i = 0; i <= 3; i++) {
-		        printf(". ");
-		        Sleep(0400);
-		    }
-		    system("cls");
-	}
-	    system("cls");
-	    printf("\nConcluído!\n");
-	    Sleep(0500);
-	    system("cls");
-
-	    fflush(stdin);
+	printf("Carregando .");
+	Sleep(0400);
+	system("cls");
 }
 
-void iniciarRodada(int rodada) {
+void telaCarregamento(){ //
+	system("cls");
+	    printf("\nCarregando");
+			for (int i = 0; i <= 2; i++) {
+				printf(" .");
+		        Sleep(0400);
+			}
+		system("cls");
+	    fflush(stdin);
+
+}
+
+void iniciarRodada(int rodada) { //
     printf("\nRODADA %d COMEÇANDO EM ", rodada);
     for (int i = 1; i <= 3; i++) {
         printf("%d", i);
@@ -312,8 +314,8 @@ void escolhaFeitaJogador(int opcao, char escolhaJogador[]){
             break;
         case 4:
             system("cls");
-            printf("\nVoltando para o menu principal...\n");
-            Sleep(1000);
+            printf("\nVoltando para o menu principal ...\n");
+            delay();
             system("cls");
             menuPrincipal();
             exit(0);
@@ -326,7 +328,7 @@ void escolhaFeitaJogador(int opcao, char escolhaJogador[]){
     }
 }
 
-void jogoMultiplayer() {
+void jogoMultiplayer() { //
     int opcaoJogador1, opcaoJogador2;
     char escolhaJogador1[20], escolhaJogador2[20], resultado[20];
     int quantPartidas = 0, condicao = 1;
@@ -337,11 +339,7 @@ void jogoMultiplayer() {
     int opcao;
 
     carregarRanking();
-    telaCarregamento();
-
-    printf("\nPEDRA PAPEL TESOURA\n");
-    Sleep(2000);
-    system("cls");
+    delay();
 
     inicio:
 
@@ -392,7 +390,7 @@ void jogoMultiplayer() {
             iniciarRodada(i+1);
 
             do{
-                printf("\nJogador 1 (%s)\n", jogadores[idxJogador1].nomeJogador);
+                printf("\nJogador 1 (%s)\n", nomeJogador1);
                 printf("\nEscolha sua jogada: \n");
                 printf("\n1 - PEDRA\n2 - PAPEL\n3 - TESOURA\n4 - DESISTIR\n");
 
@@ -407,7 +405,7 @@ void jogoMultiplayer() {
             Sleep(2000);
 
             do{
-                printf("\nJogador 2 (%s)\n", jogadores[idxJogador2].nomeJogador);
+                printf("\nJogador 2 (%s)\n", nomeJogador2);
                 printf("\nEscolha sua jogada: \n");
                 printf("\n1 - PEDRA\n2 - PAPEL\n3 - TESOURA\n4 - DESISTIR\n");
 
@@ -453,14 +451,15 @@ void jogoMultiplayer() {
             printf("\nResultado: %s\n", resultado);
 
             if(i==(quantPartidas-1)){
-                Sleep(3000);
+                getchar();
+                printf("\nPressione ENTER para CONTINUAR...");
+                getchar();
                 system("cls");
                 printf("\nEmpates: %d", quantEmpates);
-                printf("\nVitórias Jogador 1: %d", quantVitoriasJogador1);
-                printf("\nVitórias Jogador 2: %d\n", quantVitoriasJogador2);
+                printf("\nVitórias Jogador 1 (%s): %d", nomeJogador1, quantVitoriasJogador1);
+                printf("\nVitórias Jogador 2 (%s): %d\n", nomeJogador2, quantVitoriasJogador2);
             }
-
-            getchar();
+            setbuf(stdin, NULL);
             printf("\nPressione ENTER para CONTINUAR...");
             getchar();
             system("cls");
@@ -500,15 +499,18 @@ void jogoMultiplayer() {
     system("cls");
 }
 
-void jogoOffline() {
+void jogoSingleplayer() { //
     int opcao;
     char escolhaJogador[20], escolhaCPU[20], resultado[20];
     int quantPartidas = 0, condicao = 1;
     char jogarNovamente;
     int opcaoPartida;
+    int quantVitoriasComputador = 0;
+    int quantVitoriasJogador = 0;
+    int quantEmpates = 0;
 
     carregarRanking();
-    telaCarregamento();
+    delay();
 
     inicio:
 
@@ -551,7 +553,7 @@ void jogoOffline() {
             iniciarRodada(i+1);
 
             do{
-                printf("\nEscolha sua jogada: \n");
+                printf("\n%s, escolha sua jogada: \n", nomeJogador);
                 printf("\n1 - PEDRA\n2 - PAPEL\n3 - TESOURA\n4 - DESISTIR\n");
 
                 printf("\nOpção (1,2,3,4): ");
@@ -577,22 +579,35 @@ void jogoOffline() {
             if(strcmp(escolhaJogador, escolhaCPU)==0){
                 strcpy(resultado,"EMPATE!");
                 jogadores[idxJogador].quantEmpatesJogador++;
+                quantEmpates++;
 
             } else if((strcmp(escolhaJogador,"PEDRA")==0 && strcmp(escolhaCPU,"TESOURA")==0) ||
                       (strcmp(escolhaJogador,"PAPEL")==0 && strcmp(escolhaCPU,"PEDRA")==0) ||
                       (strcmp(escolhaJogador,"TESOURA")==0 && strcmp(escolhaCPU,"PAPEL")==0)){
                 strcpy(resultado,"JOGADOR VENCEU!");
                 jogadores[idxJogador].quantVitoriasJogador++;
+                quantVitoriasJogador++;
 
             } else {
                 strcpy(resultado,"COMPUTADOR VENCEU!");
                 jogadores[idxJogador].quantDerrotasJogador++;
+                quantVitoriasComputador++;
             }
 
             jogadores[idxJogador].pontuacao = jogadores[idxJogador].quantVitoriasJogador*10 + jogadores[idxJogador].quantEmpatesJogador*5;
 
             printf("\nResultado: %s\n", resultado);
-            getchar();
+
+            if(i==(quantPartidas-1)){
+                getchar();
+                printf("\nPressione ENTER para CONTINUAR...");
+                getchar();
+                system("cls");
+                printf("\nEmpates: %d", quantEmpates);
+                printf("\nVitórias Jogador (%s): %d", nomeJogador,quantVitoriasJogador);
+                printf("\nVitórias Computador: %d\n", quantVitoriasComputador);
+            }
+            setbuf(stdin, NULL);
             printf("\nPressione ENTER para CONTINUAR...");
             getchar();
             system("cls");
@@ -628,10 +643,10 @@ void jogoOffline() {
     telaCarregamento();
 }
 
-void iniciarJogo() {
+void iniciarJogo() { //
     int opcao;
     do {
-        printf("\n1 - MULTIPLAYER\n2 - OFFLINE\n3 - VOLTAR\n");
+        printf("\n1 - SINGLEPLAYER\n2 - MULTIPLAYER\n3 - VOLTAR\n");
         printf("\nOpção: ");
         scanf("%d", &opcao);
 
@@ -640,18 +655,18 @@ void iniciarJogo() {
             //Chama a função jogoMultiplayer
             case 1:
                 system("cls");
-                jogoMultiplayer();
+                jogoSingleplayer();
                 break;
 
-            //Chama a função jogoOffline
+            //Chama a função jogoSingleplayer
             case 2:
                 system("cls");
-                jogoOffline();
+                jogoMultiplayer();
                 break;
 
             //Volta para o MENU
             case 3:
-                telaCarregamento();
+                delay();
                 break;
 
             //Repete as opções de iniciarJogo, até receber uma entrada válida
@@ -664,7 +679,7 @@ void iniciarJogo() {
     } while(opcao != 3);
 }
 
-void menuPrincipal() {
+void menuPrincipal() { //
     int opcao;
     do {
         printf("\n====== MENU ======\n\n");
@@ -677,19 +692,19 @@ void menuPrincipal() {
 
             //Chama a função iniciarJogo
             case 1:
-                telaCarregamento();
+            	delay();
                 iniciarJogo();
                 break;
 
             //Chama a função mostrarRanking
             case 2:
-                telaCarregamento();
+                delay();
                 mostrarRanking();
                 break;
 
             //Exibe créditos dos desenvolvedores
             case 3:
-                telaCarregamento();
+                delay();
                 printf("\nDaniel Tavares\nGuilherme Simão\nRafael Lucas\nSamla Manathe\nVicente Queiroz\n");
                 getchar();
                 printf("\nPressione ENTER para voltar ao MENU...");
@@ -698,7 +713,7 @@ void menuPrincipal() {
                 break;
 
             case 4:
-                telaCarregamento();
+                delay();
                 mostrarTutorial();
                 break;
 
@@ -721,7 +736,7 @@ void menuPrincipal() {
     } while(opcao != 0);
 }
 
-int main() {
+int main() { //
     SetConsoleOutputCP(CP_UTF8); //Retira anomalias dos caracteres
     menuInicial();
     menuPrincipal();

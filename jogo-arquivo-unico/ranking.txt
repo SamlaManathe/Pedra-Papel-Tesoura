@@ -1,4 +1,5 @@
-Samla 7 6 4 90
-Heitor 3 3 0 30
+Samla 12 13 10 170
+Heitor 6 5 7 95
 Vicente 0 1 2 10
-Daniel 1 2 0 10
+Daniel 6 7 0 60
+Gui 1 4 0 50
