@@ -1,10 +1,8 @@
-//DECLARAÇÃO DO MENU
-
-//Declarar função menu
-
 #ifndef MENU_H
 #define MENU_H
 
+void menuInicial();
 void menuPrincipal();
+void iniciarJogo();
 
 #endif

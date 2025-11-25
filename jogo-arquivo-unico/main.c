@@ -3,6 +3,7 @@
 #include <string.h>
 #include <time.h>
 #include <windows.h>
+#include <conio.h>
 
 //Sleep(tempo_segundos); Dá uma pausa antes da próxima execução
 //system("cls"); Apaga o conteúdo do terminal
@@ -34,7 +35,7 @@ typedef struct{
 tJogador* jogadores = NULL;
 int totalJogadores = 0;
 
-void mostrarTutorial() {
+void mostrarTutorial() { 
 	char voltarAoMenu;
     char opcao;
 
@@ -181,7 +182,7 @@ void mostrarTutorial() {
             } while(voltarAoMenu != 'S' && voltarAoMenu != 'N');
 }
 
-void menuInicial() { //
+void menuInicial() { 
     printf("\n=== PEDRA PAPEL E TESOURA ===\n");
     Sleep(0700);
     printf("\n\n- Pressione ENTER para iniciar.\n");
@@ -190,14 +191,14 @@ void menuInicial() { //
     telaCarregamento();
 }
 
-void delay(){
+void delay(){ 
 	system("cls");
 	printf("Carregando .");
 	Sleep(0400);
 	system("cls");
 }
 
-void telaCarregamento(){ //
+void telaCarregamento(){ 
 	system("cls");
 	    printf("\nCarregando");
 			for (int i = 0; i <= 2; i++) {
@@ -209,7 +210,7 @@ void telaCarregamento(){ //
 
 }
 
-void iniciarRodada(int rodada) { //
+void iniciarRodada(int rodada) { 
     printf("\nRODADA %d COMEÇANDO EM ", rodada);
     for (int i = 1; i <= 3; i++) {
         printf("%d", i);
@@ -226,7 +227,7 @@ void iniciarRodada(int rodada) { //
     system("cls");
 }
 
-void carregarRanking(){
+void carregarRanking(){ 
     FILE* file = fopen("ranking.txt", "r" /*ler*/);
     if(file == NULL) return;
 
@@ -249,14 +250,14 @@ void carregarRanking(){
     fclose(file);
 }
 
-int procurarJogador(char nome[]){
+int procurarJogador(char nome[]){ 
     for(int i = 0; i < totalJogadores; i++){
         if(strcmp(jogadores[i].nomeJogador, nome)==0) return i;
     }
     return -1;
 }
 
-int adicionarJogador(char nome[]){
+int adicionarJogador(char nome[]){ 
     totalJogadores++;
     jogadores = (tJogador*)realloc(jogadores, totalJogadores * sizeof(tJogador));
     strcpy(jogadores[totalJogadores-1].nomeJogador, nome);
@@ -267,7 +268,7 @@ int adicionarJogador(char nome[]){
     return totalJogadores-1;
 }
 
-void salvarRanking(){
+void salvarRanking(){ 
     FILE* file = fopen("ranking.txt", "w" /*escrever*/);
     if(file == NULL){
         printf("\nErro ao criar o arquivo!\n");
@@ -284,7 +285,7 @@ void salvarRanking(){
     fclose(file);
 }
 
-void mostrarRanking(){
+void mostrarRanking(){ 
     carregarRanking();
     system("cls");
 
@@ -300,7 +301,7 @@ void mostrarRanking(){
     system("cls");
 }
 
-void escolhaFeitaJogador(int opcao, char escolhaJogador[]){
+void escolhaFeitaJogador(int opcao, char escolhaJogador[]){ 
 
     switch(opcao){
         case 1:
@@ -328,7 +329,7 @@ void escolhaFeitaJogador(int opcao, char escolhaJogador[]){
     }
 }
 
-void jogoMultiplayer() { //
+void jogoMultiplayer() { 
     int opcaoJogador1, opcaoJogador2;
     char escolhaJogador1[20], escolhaJogador2[20], resultado[20];
     int quantPartidas = 0, condicao = 1;
@@ -395,7 +396,13 @@ void jogoMultiplayer() { //
                 printf("\n1 - PEDRA\n2 - PAPEL\n3 - TESOURA\n4 - DESISTIR\n");
 
                 printf("\nOpção (1,2,3,4): ");
-                scanf("%d", &opcaoJogador1);
+
+                char c = _getch();
+
+                if (c >= '1' && c <= '4') {
+                    opcaoJogador1 = c - '0';
+                    printf("*\n"); // Exibe um placeholder (asterisco) para indicar que a escolha foi registrada.
+                }
 
                 escolhaFeitaJogador(opcaoJogador1, escolhaJogador1);
 
@@ -410,7 +417,13 @@ void jogoMultiplayer() { //
                 printf("\n1 - PEDRA\n2 - PAPEL\n3 - TESOURA\n4 - DESISTIR\n");
 
                 printf("\nOpção (1,2,3,4): ");
-                scanf("%d", &opcaoJogador2);
+
+                char c = _getch();
+
+                if (c >= '1' && c <= '4') {
+                    opcaoJogador2 = c - '0';
+                    printf("*\n"); // Exibe um placeholder (asterisco) para indicar que a escolha foi registrada.
+                }
 
                 escolhaFeitaJogador(opcaoJogador2, escolhaJogador2);
 
@@ -451,7 +464,7 @@ void jogoMultiplayer() { //
             printf("\nResultado: %s\n", resultado);
 
             if(i==(quantPartidas-1)){
-                getchar();
+                setbuf(stdin, NULL);
                 printf("\nPressione ENTER para CONTINUAR...");
                 getchar();
                 system("cls");
@@ -499,7 +512,7 @@ void jogoMultiplayer() { //
     system("cls");
 }
 
-void jogoSingleplayer() { //
+void jogoSingleplayer() { 
     int opcao;
     char escolhaJogador[20], escolhaCPU[20], resultado[20];
     int quantPartidas = 0, condicao = 1;
@@ -599,7 +612,7 @@ void jogoSingleplayer() { //
             printf("\nResultado: %s\n", resultado);
 
             if(i==(quantPartidas-1)){
-                getchar();
+                setbuf(stdin, NULL);
                 printf("\nPressione ENTER para CONTINUAR...");
                 getchar();
                 system("cls");
@@ -643,7 +656,7 @@ void jogoSingleplayer() { //
     telaCarregamento();
 }
 
-void iniciarJogo() { //
+void iniciarJogo() { 
     int opcao;
     do {
         printf("\n1 - SINGLEPLAYER\n2 - MULTIPLAYER\n3 - VOLTAR\n");
@@ -679,7 +692,7 @@ void iniciarJogo() { //
     } while(opcao != 3);
 }
 
-void menuPrincipal() { //
+void menuPrincipal() { 
     int opcao;
     do {
         printf("\n====== MENU ======\n\n");
@@ -705,7 +718,7 @@ void menuPrincipal() { //
             //Exibe créditos dos desenvolvedores
             case 3:
                 delay();
-                printf("\nDaniel Tavares\nGuilherme Simão\nRafael Lucas\nSamla Manathe\nVicente Queiroz\n");
+                printf("\nDaniel Tavares\nGuilherme Simão\nRafael Lucas\nSamla Manathe\nVicente Queiroz\nYahonan Alcântara\n");
                 getchar();
                 printf("\nPressione ENTER para voltar ao MENU...");
                 getchar();
@@ -736,7 +749,7 @@ void menuPrincipal() { //
     } while(opcao != 0);
 }
 
-int main() { //
+int main() { 
     SetConsoleOutputCP(CP_UTF8); //Retira anomalias dos caracteres
     menuInicial();
     menuPrincipal();

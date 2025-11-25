@@ -1,5 +1,7 @@
-Samla 12 13 10 170
+Samla 14 13 11 195
 Heitor 6 5 7 95
 Vicente 0 1 2 10
 Daniel 6 7 0 60
 Gui 1 4 0 50
+Yahonan 3 8 2 40
+Rafael 8 3 2 90

@@ -1,11 +1,9 @@
+#include <windows.h>
+#include "menu.h"
 
-#include <stdio.h>
-#include "../src/jogo.c"
-#include "../src/ranking.c"
-
-void menuPrincipal();
-
-int main(){
+int main() { 
+    SetConsoleOutputCP(CP_UTF8); //Retira anomalias dos caracteres
+    menuInicial();
     menuPrincipal();
     return 0;
 }
