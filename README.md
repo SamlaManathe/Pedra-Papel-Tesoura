@@ -2,9 +2,6 @@
 
 Jogo desenvolvido em C com modos Singleplayer e Multiplayer, Ranking, Tutorial e Pontuação Automática. O(s) jogador(es) pode(m) escolher entre melhor de 3 ou melhor de 5. Ademais, o ranking é salvo em arquivo e atualizado ao final de cada partida, lá você poderá consultar sua pontuação.
 
-**Você pode ver o vídeo de demonstração aqui:**  
-[Link do vídeo no YouTube](https://youtu.be/nGbaIN5E7so?si=rk2dOWucHICLcHFb)
-
 ## 🎮 Funcionalidades
 - Singleplayer (vs Computador)
 - Multiplayer (2 jogadores com entrada secreta usando `_getch()`)
